@@ -19,31 +19,34 @@ public class WordApiController {
     public WordApiController(){
         wordList = new ArrayList<>();
 
-        wordList.add(new Word(id++, "blablabla1", "def1"));
-        wordList.add(new Word(id++, "blablabla2", "def2"));
-        wordList.add(new Word(id++, "blablabla3", "def3"));
-        wordList.add(new Word(id++, "blablabla4", "def4"));
-        wordList.add(new Word(id++, "blablabla5", "def5"));
-        wordList.add(new Word(id++, "blablabla6", "def6"));
-        wordList.add(new Word(id++, "blablabla7", "def7"));
-        wordList.add(new Word(id++, "blablabla8", "def8"));
-        wordList.add(new Word(id++, "blablabla9", "def9"));
-        wordList.add(new Word(id++, "blablabla10", "def10"));
-        wordList.add(new Word(id++, "blablabla11", "def11"));
-        wordList.add(new Word(id++, "blablabla12", "def12"));
-        wordList.add(new Word(id++, "blablabla13", "def13"));
-        wordList.add(new Word(id++, "blablabla14", "def14"));
-        wordList.add(new Word(id++, "blablabla15", "def15"));
+        wordList.add(new Word(id++, "Zenith", "The highest point of something"));
+        wordList.add(new Word(id++, "Bailiwick", "A person's area of skill, knowledge, authority, or work"));
+        wordList.add(new Word(id++, "Bamboozle", "To deceive, to confuse"));
+        wordList.add(new Word(id++, "Calamity", "A great misfortune or disaster"));
+        wordList.add(new Word(id++, "Ephemeral", "Lasting a very short time"));
+        wordList.add(new Word(id++, "Ersatz", "Serving as a substitute "));
+        wordList.add(new Word(id++, "Halcyon", "Calm"));
+        wordList.add(new Word(id++, "Infinitesimal", "Indefinitely or exceedingly small"));
+        wordList.add(new Word(id++, "Juggernaut", " Any large, overpowering, destructive force or object"));
+        wordList.add(new Word(id++, "Kerfuffle", "a fuss, a commotion"));
+        wordList.add(new Word(id++, "Raconteur", "a person who is skilled in relating stories and anecdotes interestingly"));
+        wordList.add(new Word(id++, "Ruckus", "a noisy, disorderly disturbance"));
+        wordList.add(new Word(id++, "Serendipity", "an aptitude for making desirable discoveries by accident"));
+        wordList.add(new Word(id++, "Smithereens", "small pieces"));
+        wordList.add(new Word(id++, "Surreptitious", "acting in a stealthy way"));
     }
 
     @RequestMapping(value = "/word", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Word getRandomWord() {
-        int randomId = (int) (1 + (Math.random() * 15));
+        int MAX = id;
+        int MIN = 1;
 
-        Word randomWord = null;
+        int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
+
+        Word randomWord = new Word();
         for (Word word : wordList) {
-            if (word.getId() == randomId) {
+            if (word.getId() == randomID) {
                 randomWord = word;
                 break;
             }

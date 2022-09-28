@@ -18,35 +18,38 @@ public class QuoteController {
     public QuoteController(){
         quoteList = new ArrayList<>();
 
-        quoteList.add(new Quote(id++, "blablabla1", "author1"));
-        quoteList.add(new Quote(id++, "blablabla2", "author2"));
-        quoteList.add(new Quote(id++, "blablabla3", "author3"));
-        quoteList.add(new Quote(id++, "blablabla4", "author4"));
-        quoteList.add(new Quote(id++, "blablabla5", "author5"));
-        quoteList.add(new Quote(id++, "blablabla6", "author6"));
-        quoteList.add(new Quote(id++, "blablabla7", "author7"));
-        quoteList.add(new Quote(id++, "blablabla8", "author8"));
-        quoteList.add(new Quote(id++, "blablabla9", "author9"));
-        quoteList.add(new Quote(id++, "blablabla10", "author10"));
-        quoteList.add(new Quote(id++, "blablabla11", "author11"));
-        quoteList.add(new Quote(id++, "blablabla12", "author12"));
-        quoteList.add(new Quote(id++, "blablabla13", "author13"));
-        quoteList.add(new Quote(id++, "blablabla14", "author14"));
-        quoteList.add(new Quote(id++, "blablabla15", "author15"));
+        quoteList.add(new Quote(id++, "Be yourself; everyone else is already taken.", "Oscar Wilde"));
+        quoteList.add(new Quote(id++, "Be the change that you wish to see in the world.", "Mahatma Gandhi "));
+        quoteList.add(new Quote(id++, "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.", "Martin Luther King Jr."));
+        quoteList.add(new Quote(id++, "The fool doth think he is wise, but the wise man knows himself to be a fool.", "William Shakespeare"));
+        quoteList.add(new Quote(id++, "If you can't explain it to a six year old, you don't understand it yourself.", "Albert Einstein"));
+        quoteList.add(new Quote(id++, "Not all those who wander are lost.", "J.R.R. Tolkien"));
+        quoteList.add(new Quote(id++, "Definitions belong to the definers, not the defined.", "Toni Morrison"));
+        quoteList.add(new Quote(id++, "A book must be the axe for the frozen sea within us.", "Franz Kafka"));
+        quoteList.add(new Quote(id++, "A certain type of perfection can only be realized through a limitless accumulation of the imperfect.", "Haruki Murakami"));
+        quoteList.add(new Quote(id++, "Each person feels pain in his own way, each has his own scars.", "Haruki Murakami"));
+        quoteList.add(new Quote(id++, "Life appears to me too short to be spent in nursing animosity or registering wrongs.", "Charlotte Bronte"));
+        quoteList.add(new Quote(id++, "Happiness quite unshared can scarcely be called happiness; it has no taste.", "Charlotte Bronte"));
+        quoteList.add(new Quote(id++, "Do the best you can until you know better. Then when you know better, do better.", "Maya Angelou"));
+        quoteList.add(new Quote(id++, "If you're always trying to be normal, you will never know how amazing you can be.", "Maya Angelou"));
+        quoteList.add(new Quote(id++, "For while we have our eyes on the future, history has its eyes on us", "Amanda Gorman"));
     }
 
     @RequestMapping(value = "/quote", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Quote getQuoteOftheDay() {
-        int randomId = (int) (1 + (Math.random() * 15));
+        int MAX = id;
+        int MIN = 1;
 
-        Quote quoteOftheDay = null;
+        int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
+
+        Quote quoteOfTheDay = new Quote();
         for (Quote quote : quoteList) {
-            if (quote.getId() == randomId) {
-                quoteOftheDay = quote;
+            if (quote.getId() == randomID) {
+                quoteOfTheDay = quote;
                 break;
             }
         }
-        return quoteOftheDay;
+        return quoteOfTheDay;
     }
 }
