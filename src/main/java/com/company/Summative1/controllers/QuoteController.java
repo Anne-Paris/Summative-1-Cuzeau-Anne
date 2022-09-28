@@ -18,6 +18,7 @@ public class QuoteController {
     public QuoteController(){
         quoteList = new ArrayList<>();
 
+        //Creating a list of quotes/author
         quoteList.add(new Quote(id++, "Be yourself; everyone else is already taken.", "Oscar Wilde"));
         quoteList.add(new Quote(id++, "Be the change that you wish to see in the world.", "Mahatma Gandhi "));
         quoteList.add(new Quote(id++, "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.", "Martin Luther King Jr."));
@@ -35,6 +36,7 @@ public class QuoteController {
         quoteList.add(new Quote(id++, "For while we have our eyes on the future, history has its eyes on us", "Amanda Gorman"));
     }
 
+    //Requests a quote, get a quote at random (generates a random id)
     @RequestMapping(value = "/quote", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Quote getQuoteOftheDay() {

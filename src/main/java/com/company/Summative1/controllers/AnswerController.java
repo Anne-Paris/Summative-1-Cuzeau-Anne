@@ -17,6 +17,7 @@ public class AnswerController {
     public AnswerController(){
         answerList = new ArrayList<>();
 
+        //Creating a list of answers
         answerList.add(new Answer(id++, "Yes"));
         answerList.add(new Answer(id++, "No"));
         answerList.add(new Answer(id++, "Maybe"));
@@ -27,6 +28,7 @@ public class AnswerController {
         answerList.add(new Answer(id++, "My sources say no"));
     }
 
+    //Request body is a question, Response body is the question, an ID (first ID available) and the random answer.
     @RequestMapping(value = "/magic", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public Answer getAnswer(@RequestBody String question) {
@@ -37,7 +39,7 @@ public class AnswerController {
         Answer randomAnswer =  new Answer();
 
         randomAnswer.setQuestion(question);
-
+        randomAnswer.setId(0);
 
         for (Answer a : answerList) {
             if (a.getId() == randomID) {

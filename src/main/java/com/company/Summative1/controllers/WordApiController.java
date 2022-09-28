@@ -19,6 +19,7 @@ public class WordApiController {
     public WordApiController(){
         wordList = new ArrayList<>();
 
+        //Creating list of words + definitions
         wordList.add(new Word(id++, "Zenith", "The highest point of something"));
         wordList.add(new Word(id++, "Bailiwick", "A person's area of skill, knowledge, authority, or work"));
         wordList.add(new Word(id++, "Bamboozle", "To deceive, to confuse"));
@@ -36,6 +37,7 @@ public class WordApiController {
         wordList.add(new Word(id++, "Surreptitious", "acting in a stealthy way"));
     }
 
+    //Requests a word + definition at random (generates a random id)
     @RequestMapping(value = "/word", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Word getRandomWord() {
