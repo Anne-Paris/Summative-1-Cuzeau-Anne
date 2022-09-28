@@ -34,7 +34,8 @@ public class WordApiControllerTest {
     }
 
     private Word word;
-    // Testing POST /answer
+
+    // Testing POST /word
     @Test
     public void shouldReturnAnswer() throws Exception {
         String outputJson = mapper.writeValueAsString(word);
