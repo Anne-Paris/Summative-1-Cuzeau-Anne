@@ -1,15 +1,15 @@
 package com.company.Summative1.models;
 
-public class Word {
+public class Definition {
 
     private String word;
     private String definition;
     private int id;
 
 
-    public Word(){}
+    public Definition(){}
 
-    public Word(int id, String word, String definition){
+    public Definition(int id, String word, String definition){
         this.id = id;
         this.word = word;
         this.definition = definition;
@@ -39,3 +39,4 @@ public class Word {
         this.id = id;
     }
 }
+

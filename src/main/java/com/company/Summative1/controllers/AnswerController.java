@@ -13,6 +13,8 @@ public class AnswerController {
     private List<Answer> answerList;
 
     private static int id = 1;
+    private static int MAX = id;
+    private static int MIN = 1;
 
     public AnswerController(){
         answerList = new ArrayList<>();
@@ -32,8 +34,6 @@ public class AnswerController {
     @RequestMapping(value = "/magic", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public Answer getAnswer(@RequestBody String question) {
-        int MAX = id;
-        int MIN = 1;
 
         int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
         Answer randomAnswer =  new Answer();
@@ -47,6 +47,7 @@ public class AnswerController {
                 break;
             }
         }
+
         return randomAnswer;
     }
 }

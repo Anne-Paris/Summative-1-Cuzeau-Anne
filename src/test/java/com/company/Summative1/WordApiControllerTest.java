@@ -1,7 +1,7 @@
 package com.company.Summative1;
 
 import com.company.Summative1.controllers.WordApiController;
-import com.company.Summative1.models.Word;
+import com.company.Summative1.models.Definition;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class WordApiControllerTest {
         //Autowired
     }
 
-    private Word word;
+    private Definition word;
 
     // Testing POST /word
     @Test

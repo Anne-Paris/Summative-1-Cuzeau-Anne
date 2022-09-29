@@ -14,6 +14,8 @@ public class QuoteController {
     private List<Quote> quoteList;
 
     private static int id = 1;
+    private static int MAX = id;
+    private static int MIN = 1;
 
     public QuoteController(){
         quoteList = new ArrayList<>();
@@ -46,12 +48,14 @@ public class QuoteController {
         int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
 
         Quote quoteOfTheDay = new Quote();
+
         for (Quote quote : quoteList) {
             if (quote.getId() == randomID) {
                 quoteOfTheDay = quote;
                 break;
             }
         }
+
         return quoteOfTheDay;
     }
 }
