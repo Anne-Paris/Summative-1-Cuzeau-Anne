@@ -1,12 +1,15 @@
 package com.company.Summative1.controllers;
 
+import com.company.Summative1.models.Definition;
 import com.company.Summative1.models.Quote;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class QuoteController {
@@ -14,8 +17,6 @@ public class QuoteController {
     private List<Quote> quoteList;
 
     private static int id = 1;
-    private static int MAX = id;
-    private static int MIN = 1;
 
     public QuoteController(){
         quoteList = new ArrayList<>();
@@ -42,13 +43,24 @@ public class QuoteController {
     @RequestMapping(value = "/quote", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Quote getQuoteOftheDay() {
-        int MAX = id;
-        int MIN = 1;
+        //Grab the Definition Maximum ID from the list
+        Quote maxValue = quoteList.stream().max(Comparator.comparingInt(Quote::getId))
+                .get();
 
-        int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
+        //Grab the Definition Minimum ID from the list
+        Quote minValue = quoteList.stream().min(Comparator.comparingInt(Quote::getId))
+                .get();
+
+        int MAX = maxValue.getId();
+        int MIN = minValue.getId();
+
+        //Generate random number between min ID and max ID
+        Random random = new Random();
+        int randomID = random.nextInt((MAX - MIN) + 1) + MIN;
 
         Quote quoteOfTheDay = new Quote();
 
+        //assign the quote with randomID from quoteList to quoteOfTheDay
         for (Quote quote : quoteList) {
             if (quote.getId() == randomID) {
                 quoteOfTheDay = quote;

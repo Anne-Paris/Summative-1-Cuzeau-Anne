@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class WordApiController {
     private List<Definition> wordList;
 
     private static int id = 1;
-    private static int MAX = id;
-    private static int MIN = 1;
 
     public WordApiController(){
         wordList = new ArrayList<>();
@@ -43,18 +43,32 @@ public class WordApiController {
     @RequestMapping(value = "/word", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Definition getRandomWord() {
-        int MAX = id;
-        int MIN = 1;
 
-        int randomID = (int) (Math.random() * (MAX - MIN)) + MIN;
+        //Grab the Definition Maximum ID from the list
+        Definition maxValue = wordList.stream().max(Comparator.comparingInt(Definition::getId))
+                .get();
+
+        //Grab the Definition Minimum ID from the list
+        Definition minValue = wordList.stream().min(Comparator.comparingInt(Definition::getId))
+                .get();
+
+        int MAX = maxValue.getId();
+        int MIN = minValue.getId();
+
+        //Generate random number between min ID and max ID
+        Random random = new Random();
+        int randomID = random.nextInt((MAX - MIN) + 1) + MIN;
 
         Definition randomWord = new Definition();
+
+        //assign the definition with randomID from wordList to randomWord
         for (Definition word : wordList) {
             if (word.getId() == randomID) {
                 randomWord = word;
                 break;
             }
         }
+
         return randomWord;
     }
 

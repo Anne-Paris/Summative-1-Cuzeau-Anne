@@ -39,12 +39,8 @@ public class AnswerControllerTest {
     public void shouldReturnAnswer() throws Exception {
 
         Answer answer = new Answer();
-        answer.setQuestion("question?");
-        answer.setId(1);
-        answer.setAnswer("Yes");
 
-
-        String inputJson = mapper.writeValueAsString(answer);
+        String inputJson = mapper.writeValueAsString("question?");
 
         mockMvc.perform(
                 post("/magic")
